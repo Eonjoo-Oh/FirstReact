@@ -14,6 +14,16 @@ function App() {
       console.log("Search for", keyword);
     }
   }, [keyword]);
+  useEffect(() => {
+    if (counter !== 0) {
+      console.log("I run when counter changes", keyword);
+    }
+  }, [counter]);
+  useEffect(() => {
+    if (counter !== 0) {
+      console.log("I run when keyword and counter changes", keyword);
+    }
+  }, [keyword, counter]);
   return (
     <div>
       <input 
