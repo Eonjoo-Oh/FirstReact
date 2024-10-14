@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
 
 function Hello() {
+	function destroyedFn() {
+		console.log("destroyed :(");
+	}
 
-	useEffect(() => {
-		console.log("hi :)");
-		return () => console.log("bye :(");
-	}, []);
-
-	useEffect(function () {
-		console.log("hi :)");
-		return function() {
-			console.log("bye :(");
-		}
-	}, []);
+	function effectFn() {
+		console.log("created :)");
+		return destroyedFn;
+	}
+	useEffect(effectFn, []);
 	return <h1>Hello</h1>;
 }
 //component가 파괴될 때 return에 있는 function이 실행된다.
