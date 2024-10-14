@@ -1,41 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+
+function Hello() {
+	function destroyedFn() {
+		console.log("destroyed :(");
+	}
+
+	function effectFn() {
+		console.log("created :)");
+		return destroyedFn;
+	}
+	useEffect(effectFn, []);
+	return <h1>Hello</h1>;
+}
+//component가 파괴될 때 return에 있는 function이 실행된다.
+//이를 cleanup function이라고 한다.
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-  console.log("i run all the time");
-  useEffect(() => {
-    console.log("CALL THE API...");
-  }, []);
-  useEffect(() => {
-    if (keyword !== "" && keyword.length > 5) {
-      console.log("Search for", keyword);
-    }
-  }, [keyword]);
-  useEffect(() => {
-    if (counter !== 0) {
-      console.log("I run when counter changes", keyword);
-    }
-  }, [counter]);
-  useEffect(() => {
-    if (counter !== 0) {
-      console.log("I run when keyword and counter changes", keyword);
-    }
-  }, [keyword, counter]);
-  return (
-    <div>
-      <input 
-        value={keyword} 
-        onChange={onChange} 
-        type="text" 
-        placeholder="Search here..." 
-      />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click me</button>
-    </div>
-  );
+	const [showing, setShowing] = useState(false);
+	const onClick = () => setShowing((prev) => !(prev));
+	return ( 
+		<div>
+			{showing ? <Hello /> : null}
+			<button  onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+		</div>
+	)
 }
 
 export default App;
