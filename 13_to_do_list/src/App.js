@@ -12,7 +12,6 @@ function App() {
     setToDo("");
     setToDos((currentArray) => [toDo, ...currentArray]);
   };
-  console.log(toDos);
   return (
     <div>
       <h1>My To Dos ({toDos.length})</h1>
