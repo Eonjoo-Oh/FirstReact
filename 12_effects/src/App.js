@@ -15,8 +15,7 @@ function Hello() {
 	}, []);
 	return <h1>Hello</h1>;
 }
-//component가 파괴될 때 return에 있는 function이 실행된다.
-//이를 cleanup function이라고 한다.
+//같은 코드이지만 화살표함수를 이용하면 더 간단해 보인다.
 
 function App() {
 	const [showing, setShowing] = useState(false);
