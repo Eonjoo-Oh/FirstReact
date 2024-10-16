@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function Movie({rank, movieNm, audiAcc, salesChange, audiChange}) {
+function Movie({id, rank, movieNm, audiAcc, salesChange, audiChange}) {
 	return (
 		<div>
 			<h2>
-			  {rank}위: {movieNm}
+			  <Link to={`/movie/${id}`}>{rank}위: {movieNm}</Link>
 			</h2>
 			<p>누적관객수: {audiAcc} 명</p>
 			<ul>
@@ -16,6 +17,7 @@ function Movie({rank, movieNm, audiAcc, salesChange, audiChange}) {
 }
 
 Movie.propTypes = {
+	id: PropTypes.number.isRequired,
 	rank: PropTypes.number.isRequired,
 	movieNm: PropTypes.string.isRequired,
 	audiAcc: PropTypes.number.isRequired,
