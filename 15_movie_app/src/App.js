@@ -6,16 +6,14 @@ import {
 import Home from "./routes/Home";
 import Detail from "./routes/Detail"
 function App() {
-  return <Router>
+  return (
+  <Router>
     <Switch>
-      <Route path="/movie">
-        <Detail />
-      </Route>
-      <Route path="/">
-        <Home />
-      </Route>
+        <Route path="/movie/:id" element={<Detail />} />
+        <Route path="/" element={<Home />} />
     </Switch>
-  </Router>;
+  </Router>
+);
 }
 
 export default App;
